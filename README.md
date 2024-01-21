@@ -1,6 +1,21 @@
-# fastapi-examples
+# Asynchronous FastAPI Application for SQL Database 
 
-Each of listed branches includes implementation of explained application with corresponding documentation. Most examples are inspired by precious contents in [this book](https://www.amazon.com/Building-Data-Science-Applications-FastAPI/dp/1801079218).
+Codes are scripted and tested on Apple M2 silicon machine.
 
-* [sql](https://github.com/sunsikim/fastapi-examples/tree/sql) : FastAPI app to communicate asynchronously with relational database using SQLAlchemy
-* [nosql](https://github.com/sunsikim/fastapi-examples/tree/nosql) : FastAPI app to communicate asynchronously with document-oriented NoSQL database using Motor
+```shell
+python3 --version  # Python 3.10.13
+```
+
+## Environment
+
+Clear existing virtual environment if needed, and then create one.
+
+```shell
+if [ -d $PWD/venv ]; then
+  rm -rf $PWD/venv
+fi
+
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+```
