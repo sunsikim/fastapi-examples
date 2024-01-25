@@ -27,13 +27,24 @@ This project implements simple async FastAPI application `asyncsql` that sends r
 ```text
 asyncsql/
 |-- __init__.py
-|-- app.py
 |-- database.py
-|-- models.py
-`-- schemas.py
+|-- models
+|   |-- __init__.py
+|   |-- comments.py
+|   `-- posts.py
+|-- schemas
+|   |-- __init__.py
+|   |-- comments.py
+|   `-- posts.py
+|-- routers
+|   |-- __init__.py
+|   |-- comments.py
+|   `-- posts.py
+`-- app.py
 ```
 
-* [models.py](https://github.com/sunsikim/fastapi-examples/blob/sql/asyncsql/models.py) : codes to define ORM according to data model required to implement the application 
-* [schemas.py](https://github.com/sunsikim/fastapi-examples/blob/sql/asyncsql/schemas.py) : those models redefined as pydantic base model for data validation
-* [database.py](https://github.com/sunsikim/fastapi-examples/blob/sql/asyncsql/database.py) : utility functions to implement actions of database during connection
-* [app.py](https://github.com/sunsikim/fastapi-examples/blob/sql/asyncsql/app.py) : actual FastAPI application that utilizes components defined above
+* `database.py` : operations that have to be done in DB side(ex. creating session)
+* `models` : codes to define ORM according to data model for the application 
+* `schemas` : those models redefined as pydantic base model for data validation
+* `routers` : package of modules where endpoints for each entity are defined 
+* `app.py` : actual FastAPI application that utilizes components defined above
