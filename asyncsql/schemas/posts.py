@@ -1,5 +1,5 @@
 import datetime as dt
-from pydantic import BaseModel, Field, ConfigDict
+from pydantic import BaseModel, Field, ConfigDict, field_validator, ValidationInfo
 
 
 class PostBase(BaseModel):
@@ -16,6 +16,22 @@ class PostBase(BaseModel):
     content: str
     created_at: dt.datetime = Field(default_factory=dt.datetime.now)
 
+    @field_validator("title", "content")
+    @classmethod
+    def text_validator(cls, value: str, info: ValidationInfo):
+        """
+        this function will be used to validate values of both title and content field
+
+        decorated function should either
+         1. raise ValueError or AssertionError
+         2. return value that should be assigned to the field
+        """
+        if not value.isalnum():
+            raise ValueError(f"{info.field_name} contains non-alphanumeric character(s)")
+        else:
+            return value
+
+
 
 class PostCreate(PostBase):
     """
@@ -25,7 +41,7 @@ class PostCreate(PostBase):
 
 
 class PostRead(PostBase):
-    id: int
+    id: int = Field(..., ge=0)
 
 
 class PostPartialUpdate(BaseModel):

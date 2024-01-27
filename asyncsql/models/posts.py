@@ -6,6 +6,11 @@ from asyncsql.models.comments import Comment
 
 
 class Post(Base):
+    """
+     * As back referenced name of comment was `comments`, set the property name as `comments` as well
+     * cascase="all, delete" ensures that related comments are all deleted if the post is deleted
+     * Note that it is done by ORM, not by SQL(i.e. it doesn't mean that CASCADE DELETE construct is used internally)
+    """
     __tablename__ = "posts"
 
     id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
